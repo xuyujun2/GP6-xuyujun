@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="libs/style.css">
+</head>
+<body>
+    <div class="container">
+        <ul>
+         
+        </ul>
+    </div>
+    <script src="libs/jquery-3.3.1.js"></script>
+    <script>
+        $(function(){
+           
+           //创建一个函数里写瀑布流，给pubuliu函数传参接口和选择器， 在pubuliu函数里定义一些属性和方法
+            function pubuliu(url,selector){
+                if(!url || !selector) return; //判断，如果地址或选择器为空，就终止操作
+                this.url = url;
+                this.main = $(selector);
+                this.init();
+            }
+            pubuliu.prototype = { //pubuliu函数的原型
+                constructor:pubuliu, //定义一个指针指向函数pubuliu，那么就可以在这里调用pubuliu函数里的内容
+                init(){
+                    this.load_data() //load_data()加载数据的方法
+                    .then(function(res){ //加载数据成功，就执行大括号里的内容，res是请求道德数据
+                        console.log(res);
+                        this.json = res.data.list; //res.data.list是每一项数据
+                        this.render(); //渲染页面的方法
+                    }.bind(this)) //绑定this，使得里面的this指向pubuliu
+
+                },
+                load_data(){ //用ajax发送数据请求
+                    this.opt = {
+                        url:this.url,
+                        dataType:"jsonp"      
+                    };
+                    return $.ajax(this.opt)
+                },
+                render(){ //渲染页面
+                    this.html = "<ul>";
+                    this.json.forEach(function(item){
+                         //console.log(item.item_id);
+                        this.html +=   `<li>
+                                            <img src=${item.image} >
+                                            <p>￥${item.price}</p>
+                                            <h6><span>优选</span>${item.title.substring(0,8)}</h6>
+                                            <button data-id=${item.item_id}>购买${item.item_id}</button>
+                                        </li>`
+                    }.bind(this))
+                    this.html += "</ul>";
+                    // console.log(this.html);
+                    this.main.html(this.main.html() + this.html);//对渲染出的数据拼接，然后设置为选择器的内置内容
+                 },
+            }
+
+            new pubuliu("http://mce.meilishuo.com/jsonp/get/3?offset=0&frame=1&trace=0&limit=10&endId=0&pid=106888&_=1526528205879",".container")
+        })
+
+    </script>
+</body>
+</html>

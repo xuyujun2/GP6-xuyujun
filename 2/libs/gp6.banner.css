@@ -1,0 +1,20 @@
+
+*{margin: 0;padding: 0;}
+li{list-style: none;}
+.lunbotu{width: 1178px;height: 400px;margin-left: auto;margin-right: auto;position: relative;}
+.lbt_main{width: 1178px;height: 400px;position: relative;overflow: hidden;}
+.item{width: 1178px;height: 400px;position : absolute;text-align: center;line-height: 400px;font-size: 100px;background: #fff;box-sizing: border-box;}
+.item.active{z-index: 2;}
+.fenye{width: 80%;height:20px;position: absolute;z-index: 999;top:80%;left:10%;text-align: center;}
+
+.fenye span{display: inline-block;height: 20px;width: 20px;border-radius: 50%;background: white;margin-left: 40px;}
+.fenye span.active{ /*设置span的 .active*/background: red;}
+.fenye span:first-child{margin-left: 0; }
+
+#next{height: 60px;width: 40px;background:url(../images/l1.png) 0px 5px no-repeat;position: absolute;z-index: 999;}
+
+#prev{height: 60px;width: 40px;background:url(../images/l2.png) 10px 5px no-repeat;position: absolute;z-index: 999;}
+
+#prev{left: 0;top: 50%;margin-top: -30px;}
+#next{right: 0;top: 50%;margin-top: -30px;}
+

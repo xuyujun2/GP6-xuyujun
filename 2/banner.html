@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="libs/gp6.banner.css">
+    <style>
+        /*使用者的身份去编写css*/
+        body{
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="lunbotu">
+        <!--轮播图 主体-->
+        <div class="lbt_main">
+            <div class="item active"><img src="./images/1.jpg "/></div>
+            <div class="item"><img src="./images/lunbotu.jpg "/></div>
+        </div>
+        <!--轮播图下面按钮-->
+        <div class="fenye"></div>
+        <!--轮播图左右按钮-->
+        <div id="prev"></div>
+        <div id="next"></div>
+        
+    </div>
+    <script src="libs/jquery-3.3.1.js"></script>
+    <script src="libs/jquery.banner.js"></script>
+    <script>
+        //轮播图插件;
+        $(function(){
+            $(".banner")
+            .xLbt(".lbt_main",{
+                animate:"fade",
+                nextBtn: $("#next"),
+                prevBtn: $("#prev"),
+                pagination:{
+                    el:".fenye"
+                },                
+                loop:true
+            }) 
+        })
+    </script>
+</body>
+</html>
